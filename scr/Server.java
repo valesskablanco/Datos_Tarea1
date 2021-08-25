@@ -28,9 +28,36 @@ public class Server implements Runnable {
 
             //suave
         } catch {
-            
+
             //
         }
+    }
+
+    public static int findPort(ServerSocket servidor, Socket clientSocket) {
+
+        int puerto;
+        puerto = port;
+
+        boolean freePort = false;
+
+        while (!freePort) {
+
+            try {
+
+                servidor = new ServerSocket(puerto);
+                Server.port = puerto;
+                servidor.close();
+                freePort = true;
+                System.out.println("Servidor en" + puerto);
+
+            } catch (Exception e2) {
+
+                System.out.println("Puerto ocupado, intentando con el siguiente...");
+                puerto++;
+            }
+
+        }
+        return puerto;
     }
     
 }
