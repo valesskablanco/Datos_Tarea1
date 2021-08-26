@@ -6,15 +6,15 @@ import java.net.Socket;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import java.util.Observable;
 import java.util.StringTokenizer;
 
-public class Server implements Runnable {
+public class Server /*implements Runnable*/ {
     
     static int port = 5000;
 
-    @Override
-    public void run() {
+    //@Override
+    //public void run() {
+    public static void main(String args[]){
 
         ServerSocket servidor = null;
         Socket clientSocket = null;

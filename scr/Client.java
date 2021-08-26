@@ -6,13 +6,13 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Client implements Runnable {
+public class Client /*implements Runnable*/ {
     
-    private String datos;
 
-    @Override
+    //@Override
 
-    public void run() {
+    //public void run() {
+    public static void main(String args[]) {
 
         final String host = "127.0.0.1";
         final int port = 5000;
@@ -22,7 +22,7 @@ public class Client implements Runnable {
 
             Socket socketClient = new Socket(host, port);
             outputStream = new DataOutputStream(socketClient.getOutputStream());
-            outputStream.writeUTF(datos);
+            outputStream.writeUTF("Hola mundo desde el cliente");
             socketClient.close();
 
 
@@ -32,5 +32,5 @@ public class Client implements Runnable {
         }
         
     }
-    
+
 }
