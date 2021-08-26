@@ -20,14 +20,11 @@ import java.awt.event.ActionListener;
 public class GUI extends JFrame implements Observer {
 
     private JButton btnEnviar;
-	private JButton btnChats;
 	private JScrollPane jScrollPane1;
 	private JTextArea txtTexto;
 	private JTextField txtTextoEnviar;
 	private JTextField txtPuertoEnviar;
-	private JLabel puerto;
-    private JPopupMenu jPopupMenu;
-    
+
     static JFrame frame;
 
     Server servidor = new Server();
@@ -46,7 +43,23 @@ public class GUI extends JFrame implements Observer {
     public void initComponets() {
 
         jScrollPane1 = new JScrollPane();
+        txtTexto = new JTextArea();
+		btnEnviar = new JButton();
+		txtTextoEnviar = new JTextField(25);
+        txtPuertoEnviar = new JTextField(3);
         
+        txtTexto.setColumns(20);
+		txtTexto.setRows(5);
+        jScrollPane1.setViewportView(txtTexto);
+        
+        btnEnviar.setText("Enviar");
+		btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnEnviarActionPerformed(evt);
+			}
+        });
+        
+        // investigar sobre GroupLayout
     }
 
     @Override
