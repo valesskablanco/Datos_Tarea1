@@ -6,16 +6,12 @@ import java.net.Socket;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.crypto.Data;
-
-import java.util.Observable;
+//import java.util.Observable;
 import java.util.StringTokenizer;
 
-public class Server extends Observable implements Runnable {
+public class Server implements Runnable {
     
     static int port = 5000;
-    static int myport;
-    private int mipuerto;
 
     @Override
     public void run() {
@@ -26,9 +22,8 @@ public class Server extends Observable implements Runnable {
 
         try {
 
-            myport = findPort(servidor, clientSocket);
-            servidor = new ServerSocket(myport);
-            mipuerto = servidor.getLocalPort();
+            servidor = new ServerSocket(port);
+            System.out.print("Servidor Iniciado");
 
             while (true) {
 
@@ -36,12 +31,16 @@ public class Server extends Observable implements Runnable {
                 inputStream = new DataInputStream(clientSocket.getInputStream());
 
                 String datos = inputStream.readUTF();
-                System.out.println(datos);
+                String[] mensaje = separaDatos(datos); //Datos separados en números enteros
+                System.out.println(mensaje[0]+mensaje[1]+mensaje[2]);
 
-                this.setChanged();
-                this.notifyObservers(datos);
-                this.clearChanged();
-                
+                //this.setChanged();
+                //this.notifyObservers(datos);
+                //this.clearChanged();
+
+                clientSocket.close();
+                System.out.println("Cliente desconectado");
+
             }
         } catch (IOException ex) {
 
@@ -67,38 +66,6 @@ public class Server extends Observable implements Runnable {
         return datosArray;
 
 
-    }
-
-    public static int findPort(ServerSocket servidor, Socket clientSocket) {
-
-        int puerto;
-        puerto = port;
-
-        boolean freePort = false;
-
-        while (!freePort) {
-
-            try {
-
-                servidor = new ServerSocket(puerto);
-                Server.port = puerto;
-                servidor.close();
-                freePort = true;
-                System.out.println("Servidor en" + puerto);
-
-            } catch (Exception e2) {
-
-                System.out.println("Puerto ocupado, intentando con el siguiente...");
-                puerto++;
-            }
-
-        }
-        return puerto;
-    }
-
-    public int getPort() {
-        
-        return mipuerto;
     }
     
 }
