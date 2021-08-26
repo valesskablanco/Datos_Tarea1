@@ -28,7 +28,6 @@ public class Client implements Runnable {
             Socket socketClient = new Socket(host, puerto);
             outputStream = new DataOutputStream(socketClient.getOutputStream());
             outputStream.writeUTF(datos);
-            
             socketClient.close();
 
         } catch (IOException ex) {

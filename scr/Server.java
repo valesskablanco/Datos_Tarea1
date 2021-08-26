@@ -13,12 +13,7 @@ import java.util.StringTokenizer;
 
 public class Server extends Observable implements Runnable {
     
-    private int puerto;
-
-    public Server(int puerto) {
-        
-        this.puerto = puerto;
-    }
+    private int puerto = 5000;
 
     @Override
     public void run() {
