@@ -6,9 +6,7 @@ import java.net.Socket;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.xml.crypto.Data;
-
 import java.util.StringTokenizer;
 
 public class Server implements Runnable {
@@ -26,11 +24,44 @@ public class Server implements Runnable {
 
         try {
 
-            //suave
-        } catch {
+            myport = findPort(servidor, clientSocket);
+            servidor = new ServerSocket(myport);
+            mipuerto = servidor.getLocalPort();
 
-            //
+            while (true) {
+
+                clientSocket = servidor.accept();
+                inputStream = new DataInputStream(clientSocket.getInputStream());
+
+                String datos = inputStream.readUTF();
+
+                System.out.println(datos);
+
+            }
+        } catch (IOException ex) {
+
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+
+            //Handle exception
         }
+    }
+    
+    public static String[] separaDatos(String datos) {
+        
+        StringTokenizer tokens = new StringTokenizer(datos, ".");
+        String[] datosArray = new String[tokens.countTokens()];
+        int i = 0;
+
+        while (tokens.hasMoreTokens()) {
+            
+            String num = tokens.nextToken();
+            datosArray[i] = num;
+            i++;
+
+        }
+        return datosArray;
+
+
     }
 
     public static int findPort(ServerSocket servidor, Socket clientSocket) {
@@ -58,6 +89,11 @@ public class Server implements Runnable {
 
         }
         return puerto;
+    }
+
+    public int getPort() {
+        
+        return mipuerto;
     }
     
 }
