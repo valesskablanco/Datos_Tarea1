@@ -6,15 +6,20 @@ import java.net.Socket;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Observable;
 import java.util.StringTokenizer;
 
-public class Server /*implements Runnable*/ {
+public class Server extends Observable implements Runnable {
     
-    static int port = 5000;
+    private int puerto;
 
-    //@Override
-    //public void run() {
-    public static void main(String args[]){
+    public Server(int puerto) {
+        
+        this.puerto = puerto;
+    }
+
+    @Override
+    public void run() {
 
         ServerSocket servidor = null;
         Socket clientSocket = null;
@@ -22,7 +27,7 @@ public class Server /*implements Runnable*/ {
 
         try {
 
-            servidor = new ServerSocket(port);
+            servidor = new ServerSocket(puerto);
             System.out.print("Servidor Iniciado");
 
             while (true) {
@@ -33,11 +38,12 @@ public class Server /*implements Runnable*/ {
 
                 String datos = inputStream.readUTF();
                 String[] mensaje = separaDatos(datos); //Datos separados en números enteros
+
                 System.out.println(mensaje[0]+mensaje[1]+mensaje[2]);
 
-                //this.setChanged();
-                //this.notifyObservers(datos);
-                //this.clearChanged();
+                this.setChanged();
+                this.notifyObservers(datos);
+                this.clearChanged();
 
                 clientSocket.close();
                 System.out.println("Cliente desconectado");
@@ -52,20 +58,19 @@ public class Server /*implements Runnable*/ {
     }
     
     public static String[] separaDatos(String datos) {
-        
+
         StringTokenizer tokens = new StringTokenizer(datos, ".");
         String[] datosArray = new String[tokens.countTokens()];
         int i = 0;
 
         while (tokens.hasMoreTokens()) {
-            
+
             String num = tokens.nextToken();
             datosArray[i] = num;
             i++;
 
         }
         return datosArray;
-
 
     }
     
