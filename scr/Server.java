@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.crypto.Data;
+
+import java.util.Observable;
 import java.util.StringTokenizer;
 
-public class Server implements Runnable {
+public class Server extends Observable implements Runnable {
     
     static int port = 5000;
     static int myport;
@@ -34,9 +36,12 @@ public class Server implements Runnable {
                 inputStream = new DataInputStream(clientSocket.getInputStream());
 
                 String datos = inputStream.readUTF();
-
                 System.out.println(datos);
 
+                this.setChanged();
+                this.notifyObservers(datos);
+                this.clearChanged();
+                
             }
         } catch (IOException ex) {
 
