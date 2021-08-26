@@ -5,14 +5,13 @@ import java.util.Observer;
 
 @SuppressWarnings("deprecation")
 
-public class Frm1 extends javax.swing.JFrame implements Observer {
+public class Frm2 extends javax.swing.JFrame implements Observer {
 
-    public Frm1() {
+    public Frm2() {
 
         initComponents();
-
         this.getRootPane().setDefaultButton(this.btnEnviar);
-        Server s = new Server(5000);
+        Server s = new Server(6000);
         s.addObserver(this);
         Thread t = new Thread(s);
         t.start();
@@ -22,11 +21,11 @@ public class Frm1 extends javax.swing.JFrame implements Observer {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {
 
-        String datos = "1: " + this.txtTextoEnviar.getText() + "\n";
+        String datos = "2: " + this.txtTextoEnviar.getText() + "\n";
 
         this.txtTexto.append(datos);
 
-        Client c = new Client(datos, 6000);
+        Client c = new Client(datos, 5000);
         Thread t = new Thread(c);
         t.start();
     }
@@ -37,7 +36,7 @@ public class Frm1 extends javax.swing.JFrame implements Observer {
             
             public void run() {
 
-                new Frm1().setVisible(true);
+                new Frm2().setVisible(true);
             }
         });
     }
