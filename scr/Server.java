@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 import java.util.Observable;
 import java.util.StringTokenizer;
 
+@SuppressWarnings("deprecation")
+
 public class Server extends Observable implements Runnable {
     
     private int puerto;
