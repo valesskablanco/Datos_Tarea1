@@ -28,6 +28,7 @@ public class Server implements Runnable {
             while (true) {
 
                 clientSocket = servidor.accept();
+                System.out.println("Cliente conectado");
                 inputStream = new DataInputStream(clientSocket.getInputStream());
 
                 String datos = inputStream.readUTF();
