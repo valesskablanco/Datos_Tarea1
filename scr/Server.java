@@ -70,5 +70,5 @@ public class Server extends Observable implements Runnable {
         return datosArray;
 
     }
-    
+
 }
