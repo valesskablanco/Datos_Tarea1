@@ -59,7 +59,30 @@ public class GUI extends JFrame implements Observer {
 			}
         });
         
-        // investigar sobre GroupLayout
+        GroupLayout layout = new GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				javax.swing.GroupLayout.Alignment.TRAILING,
+				layout.createSequentialGroup().addContainerGap().addGroup(layout
+						.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+						.addGroup(layout.createSequentialGroup().addComponent(txtPuertoEnviar)
+								.addComponent(txtTextoEnviar).addComponent(btnEnviar)
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+						.addGroup(layout.createSequentialGroup().addComponent(jScrollPane1,
+								javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)))
+						.addContainerGap()));
+
+		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup().addContainerGap()
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addComponent(txtPuertoEnviar).addComponent(txtTextoEnviar).addComponent(btnEnviar))
+
+				.addContainerGap()));
+
+		pack();
     }
 
     @Override
