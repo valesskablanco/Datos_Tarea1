@@ -1,39 +1,40 @@
 package scr;
 
-import java.io.DataOutputStream;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class Client implements Runnable {
+public class Client {
 
-    private String datos;
-    private int puerto;
+    private static final String ip = "127.0.0.1";
+    private static final int puerto = 9090;
 
-    public Client(String datos, int puerto) {
-        
-        this.datos = datos;
-        this.puerto = puerto;
-    }
+    public static void main(String[] args) throws IOException {
 
-    @Override
-    public void run() {
+        Socket socket = new Socket(ip, puerto);
 
-        final String host = "127.0.0.1";
-        DataOutputStream outputStream; //objeto usado para enviar los datos
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
 
-        try {
+        while (true) {
 
-            Socket socketClient = new Socket(host, puerto);
-            outputStream = new DataOutputStream(socketClient.getOutputStream());
-            outputStream.writeUTF(datos);
-            socketClient.close();
+            System.out.println("> ");
+            String datos = keyboard.readLine();
 
-        } catch (IOException ex) {
+            if (datos.equals("quit")) break;
 
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            out.println(datos);
+
+            String monto = in.readLine();
+            System.out.println("El valor del monto es: " + monto);
+
         }
+
+        socket.close();
 
     }
 }

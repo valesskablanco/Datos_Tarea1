@@ -2,13 +2,16 @@ package scr;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
+
 public class Server {
 
-    private static final int puerto = 5000;
+    private static final int puerto = 9090;
 
     public static void main(String[] args) throws IOException {
         
@@ -19,10 +22,22 @@ public class Server {
         System.out.println("[SERVER] Cliente conectado.");
 
         PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-        out.println(obtenerDato("Aquí llega el mensaje"));
+        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+        try {
+
+            while (true) {
+
+                String datos = in.readLine();
+                out.println(obtenerDato(datos));
+
+            }
+
+        } finally {
 
         server.close();
         client.close();
+    }
 
     }
 
