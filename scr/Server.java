@@ -2,11 +2,11 @@ package scr;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Server {
@@ -19,32 +19,24 @@ public class Server {
     */
 
     private static final int puerto = 9090;
+    private static ArrayList<ClientHandler> clients = new ArrayList<>();
+    private static ExecutorService pool = Executors.newFixedThreadPool(2);
 
     public static void main(String[] args) throws IOException {
         
         ServerSocket server = new ServerSocket(puerto);
 
-        System.out.println("[SERVER] Esperando conexón...");
-        Socket client = server.accept();
-        System.out.println("[SERVER] Cliente conectado.");
+        while (true) {
 
-        PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            System.out.println("[SERVER] Esperando conexón...");
+            Socket client = server.accept();
+            System.out.println("[SERVER] Cliente conectado.");
+            ClientHandler clientThread = new ClientHandler(client);
+            clients.add(clientThread);
 
-        try {
+            pool.execute(clientThread);
 
-            while (true) {
-
-                String datos = in.readLine();
-                out.println(obtenerDato(datos));
-
-            }
-
-        } finally {
-
-        server.close();
-        client.close();
-    }
+        }
 
     }
 

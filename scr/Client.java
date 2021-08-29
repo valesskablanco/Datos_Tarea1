@@ -11,7 +11,7 @@ public class Client {
 
     /**
     * Cliente
-    * Clase que crea el socket para el cliente y realiza la conexión. Además, envia los datos al servidos
+    * Clase que crea el socket para el cliente y realiza la conexión. Además, envia los datos al servidor
     * @author Valesska Blanco / ITCR
     * @version 0.1, 2021/08/28
     */
