@@ -22,6 +22,8 @@ public class Server {
     private static ArrayList<ClientHandler> clients = new ArrayList<>();
     private static ExecutorService pool = Executors.newFixedThreadPool(2);
 
+    @SuppressWarnings({ "resource" })
+    
     public static void main(String[] args) throws IOException {
         
         ServerSocket server = new ServerSocket(puerto);

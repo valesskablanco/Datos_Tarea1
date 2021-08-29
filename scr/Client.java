@@ -29,7 +29,7 @@ public class Client {
 
         while (true) {
 
-            System.out.println("> ");
+            System.out.println("> Indique los datos del producto: valor.porcentaje.peso ");
             String datos = keyboard.readLine();
 
             if (datos.equals("quit")) break;
