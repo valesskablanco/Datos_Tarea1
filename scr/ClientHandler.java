@@ -6,6 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+    /**
+    * ClientHandler.
+    * Clase que maneja varios clientes y les comunica con el servidor
+    * @author Valesska Blanco / ITCR
+    * @version 0.1, 2021/08/28
+    */
 
 public class ClientHandler implements Runnable {
 
@@ -47,7 +53,7 @@ public class ClientHandler implements Runnable {
 
                 e.printStackTrace();
             }
-            
+
             out.close();
     }
         

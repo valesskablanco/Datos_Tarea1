@@ -8,24 +8,23 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+* Servidor.
+* Clase que crea el servidor y logra el cálculo de los datos
+* @author Valesska Blanco / ITCR
+* @version 0.1, 2021/08/28
+*/
 
 public class Server {
-
-    /**
-    * Servidor.
-    * Clase que crea el servidor y logra el cálculo de los datos
-    * @author Valesska Blanco / ITCR
-    * @version 0.1, 2021/08/28
-    */
 
     private static final int puerto = 9090;
     private static ArrayList<ClientHandler> clients = new ArrayList<>();
     private static ExecutorService pool = Executors.newFixedThreadPool(2);
 
     @SuppressWarnings({ "resource" })
-    
+
     public static void main(String[] args) throws IOException {
-        
+
         ServerSocket server = new ServerSocket(puerto);
 
         while (true) {
@@ -42,15 +41,16 @@ public class Server {
 
     }
 
+/**
+* Calculadora del monto del producto
+* Este método recorre un string, extrayendo los datos útiles
+* y los convierte a datos de tipo double. Luego realiza el cálculo y finaliza.
+* @param param1 Recibe una cadena de caracteres que incluye números y tokens "."
+* @return Monto calculado para el producto
+*/
+
     public static double obtenerDato(String datos) {
 
-        /**
-        * Calculadora del monto del producto
-        * Este método recorre un string, extrayendo los datos útiles
-        * y los convierte a datos de tipo double. Luego realiza el cálculo y finaliza.
-        * @param param1 Recibe una cadena de caracteres que incluye números y tokens "."
-        * @return Monto calculado para el producto
-        */
 
         StringTokenizer tokens = new StringTokenizer(datos, ".");
         String[] datosArray = new String[tokens.countTokens()];
