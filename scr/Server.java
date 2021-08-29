@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 public class Server {
 
     /**
-    * Servidor
+    * Servidor.
     * Clase que crea el servidor y logra el cálculo de los datos
     * @author Valesska Blanco / ITCR
     * @version 0.1, 2021/08/28
