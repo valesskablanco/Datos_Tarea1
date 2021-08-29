@@ -9,6 +9,13 @@ import java.net.Socket;
 
 public class Client {
 
+    /**
+    * Cliente
+    * Clase que crea el socket para el cliente y realiza la conexión. Además, envia los datos al servidos
+    * @author Valesska Blanco / ITCR
+    * @version 0.1, 2021/08/28
+    */
+
     private static final String ip = "127.0.0.1";
     private static final int puerto = 9090;
 
