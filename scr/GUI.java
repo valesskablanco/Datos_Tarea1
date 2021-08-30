@@ -8,7 +8,7 @@ import java.awt.event.*;
     * GUI
     * Clase que crea la interfaz gráfica donde ocurre la comunicacion clientes-servidor
     * @author Valesska Blanco / ITCR
-    * @version 0.1, 2021/08/28
+    * @version 1.0, 2021/08/29
     */
 
 

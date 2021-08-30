@@ -11,7 +11,7 @@ import java.net.Socket;
 * Cliente
 * Clase que crea el socket para el cliente y realiza la conexión. Además, envia los datos al servidor
 * @author Valesska Blanco / ITCR
-* @version 0.1, 2021/08/28
+* @version 1.0, 2021/08/29
 */
 
 public class Client {

@@ -10,7 +10,7 @@ import java.net.Socket;
     * ClientHandler.
     * Clase que maneja varios clientes y les comunica con el servidor
     * @author Valesska Blanco / ITCR
-    * @version 0.1, 2021/08/28
+    * @version 1.0, 2021/08/29
     */
 
 public class ClientHandler implements Runnable {
