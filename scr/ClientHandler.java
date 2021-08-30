@@ -40,8 +40,7 @@ public class ClientHandler implements Runnable {
 
         } catch (IOException e) {
             
-            System.err.println("IOException in ClientHandler");
-            System.err.println(e.getStackTrace());
+            System.err.println("Cliente Desconectado...");
             
         } finally {
 

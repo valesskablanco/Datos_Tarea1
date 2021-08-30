@@ -74,7 +74,7 @@ public class GUI extends JFrame implements ActionListener {
         if (e.getSource() == btnSend){
 
             datos = insertadatos.getText();
-            System.out.println(Server.obtenerDato(datos));
+            System.out.println("El monto calculado es: " + Server.obtenerDato(datos));
 
         }
         
